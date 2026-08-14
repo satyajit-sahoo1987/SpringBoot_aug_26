@@ -1,0 +1,46 @@
+package com.jt.hello;
+import com.Teacher;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.ListableBeanFactory;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.ImportResource;
+import org.springframework.stereotype.Component;
+@ImportResource("beans.xml")
+@SpringBootApplication
+@ComponentScan(basePackages={"com"})
+public class HelloApplication {
+
+	public static void main(String[] args) {
+		ApplicationContext context= SpringApplication.run(HelloApplication.class, args);
+		//1.using XML file
+		Greet greet=context.getBean(Greet.class);
+		greet.sayHello();
+		//2.using stereotype annotation
+		Person person=context.getBean(Person.class);
+		person.sayHello();
+
+		//3.using configuration file
+        Student std=context.getBean(Student.class);
+		std.sayHello();
+
+		Teacher teacher=context.getBean(Teacher.class);
+		teacher.sayHello();
+
+		System.out.println(teacher.hashCode());
+		Teacher teacher1=context.getBean(Teacher.class);
+		System.out.println(teacher1.hashCode());
+
+		System.out.println("student1"+std.hashCode());
+		Student std2=context.getBean(Student.class);
+		System.out.println(std2.hashCode());
+		System.out.println("greet1"+greet.hashCode());
+		Greet greet2=context.getBean(Greet.class);
+		System.out.println(greet2.hashCode());
+		
+	}
+	 
+}
