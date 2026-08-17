@@ -7,5 +7,7 @@
 <!-- bean definitions here -->
 <bean class="com.jt.hello.Greet" scope="prototype">
 </bean>
+<!-- <bean class="com.jt.hello.Person"></bean> -->
+<!-- <bean class="com.jt.Employee" ></bean> -->
 
 </beans>
