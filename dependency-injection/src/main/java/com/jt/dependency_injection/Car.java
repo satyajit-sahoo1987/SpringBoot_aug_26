@@ -1,6 +1,7 @@
 package com.jt.dependency_injection;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -28,7 +29,7 @@ public class Car {
   private Engine engine;
 
   @Autowired
-  public Car(Engine engine) {
+  public Car(@Qualifier("Diesel")Engine engine) {
     this.engine = engine;
     System.out.println("paramerterized constructor");
   }
