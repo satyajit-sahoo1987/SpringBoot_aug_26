@@ -10,12 +10,12 @@ public class DependencyInjectionApplication {
 
 	public static void main(String[] args) {
 		ApplicationContext context=SpringApplication.run(DependencyInjectionApplication.class, args);
-		// Engine engine=context.getBean(Engine.class);
-		// engine.startEngine();
+		dieselEngine engine=context.getBean(dieselEngine.class);
+		engine.startEngine();
+		engine.stopEngine();
 
 		Car car=context.getBean(Car.class);
 		car.startCar();
 		car.stopCar();
 	}
-
 }

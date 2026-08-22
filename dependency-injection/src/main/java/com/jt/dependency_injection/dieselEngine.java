@@ -3,7 +3,8 @@ package com.jt.dependency_injection;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
-@Component("Diesel")
+// @Component
+@Component("diesel")
 @Primary
 public class dieselEngine  implements Engine{
      @Override

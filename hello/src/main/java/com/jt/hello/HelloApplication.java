@@ -13,6 +13,7 @@ import org.springframework.context.annotation.ImportResource;
 import org.springframework.stereotype.Component;
 @ImportResource("beans.xml")
 @SpringBootApplication
+// @ComponentScan(basePackages={"com."})
 @ComponentScan(basePackages={"com.jt"})
 public class HelloApplication {
 

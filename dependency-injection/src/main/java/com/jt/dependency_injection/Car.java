@@ -29,7 +29,8 @@ public class Car {
   private Engine engine;
 
   @Autowired
-  public Car(@Qualifier("Diesel")Engine engine) {
+  // public Car(@Qualifier("dieselEngine")Engine engine) {
+  public Car(@Qualifier("diesel")Engine engine) {
     this.engine = engine;
     System.out.println("paramerterized constructor");
   }
