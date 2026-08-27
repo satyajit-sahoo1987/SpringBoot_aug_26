@@ -5,7 +5,9 @@ import java.io.PrintWriter;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -29,19 +31,29 @@ public String contact(){
 // public String submitDetails(HttpServletRequest request,Model model){
 //     System.out.println("Submit");
 //     String name=request.getParameter("name");
-//     String phone=request.getParameter("phone");
-//     // System.out.println("Name is :"+name);
-//     // System.out.println("Phone number  is :"+phone);
+    // String phone=request.getParameter("phone");
+    // System.out.println("Name is :"+name);
+    // System.out.println("Phone number  is :"+phone);
 
-//     model.addAttribute("name",name);
-//     model.addAttribute("phone",phone);
+    // model.addAttribute("name",name);
+    // model.addAttribute("phone",phone);
 
-//     return "details-page";
-@RequestMapping("/submit-details")
-public String submitDetails(@RequestParam(value="name") String name1,@RequestParam String phone,Model model){
+    // return "details-page";
+// @RequestMapping("/submit-details")
+// @RequestMapping(value="/submit-details",method=RequestMethod.POST)
+// public String submitDetails(@RequestParam(value="name" , required=false,defaultValue = "SpringBoot") String name1,@RequestParam String phone,Model model){
+//  System.out.println("/////"+name.length);
+    // model.addAttribute("name",name1);
+    // model.addAttribute("phone",phone);
 
-    model.addAttribute("name",name1);
-    model.addAttribute("phone",phone);
+    // return "details-page";
+// }
+
+@RequestMapping(value="/submit-details",method=RequestMethod.POST)
+public String submitDetails(@ModelAttribute Person person,Model model){
+//  System.out.println("/////"+name.length);
+    model.addAttribute("name",person.getname1());
+    model.addAttribute("phone",person.getPhone());
 
     return "details-page";
 }
