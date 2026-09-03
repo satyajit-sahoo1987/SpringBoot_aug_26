@@ -49,7 +49,7 @@ public class StudentController {
                 return student;//if we only print then use void no return type-in terminal
     }
      @RequestMapping("/fruits")
-    //  @ResponseBody
+    //  @ResponseBody//it tells Springboot to return a JSON Object instead of a view file
     public List<String>getStrings(){
         return List.of("Apple","Mango","Grapes");
     }

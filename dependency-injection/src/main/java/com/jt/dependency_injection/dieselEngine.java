@@ -4,8 +4,8 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 // @Component
-@Component("diesel")
-@Primary
+@Component
+@Primary 
 public class dieselEngine  implements Engine{
      @Override
     public void startEngine() {
