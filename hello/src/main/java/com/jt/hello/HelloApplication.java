@@ -13,8 +13,8 @@ import org.springframework.context.annotation.ImportResource;
 import org.springframework.stereotype.Component;
 @ImportResource("beans.xml")
 @SpringBootApplication
-// @ComponentScan(basePackages={"com."})
-@ComponentScan(basePackages={"com.jt"})
+@ComponentScan(basePackages={"com"})
+// @ComponentScan(basePackages={"com.jt"})
 public class HelloApplication {
 
 	public static void main(String[] args) {
@@ -31,8 +31,8 @@ public class HelloApplication {
 		std.sayHello();
 
         // //outside package
-		// Teacher teacher=context.getBean(Teacher.class);
-		// teacher.sayHello();
+		Teacher teacher=context.getBean(Teacher.class);
+		teacher.sayHello();
 
 		Employee emp1=context.getBean(Employee.class);
 		emp1.show();
