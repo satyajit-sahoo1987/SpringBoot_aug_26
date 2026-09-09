@@ -11,7 +11,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -26,7 +25,7 @@ public class Expense {
     private BigDecimal price;
     private LocalDate date;
 
-    private int description;
+    // private int description;
     // private BigDecimal price;
     // public Expense(){
 
