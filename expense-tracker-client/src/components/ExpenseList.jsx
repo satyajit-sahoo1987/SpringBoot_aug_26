@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 const ExpenseList = () => {
     const [expenses,setExpenses]=useState([])
@@ -9,16 +9,35 @@ const ExpenseList = () => {
         setExpenses(response.data)
         // console.log("data is",response.data);
         }catch(err){
-            console.log("error is ",err);   
+            console.log("some error occured:-",err);   
         }
     }
+    const handleDelete=async (expenseId)=>{
+        try{
+          const response= await axios.delete('http://localhost:8080/expenses/'+expenseId)
+          console.log("response ",response);
+          
+          if(response.status===204){
+            getExpenses();
+          }else{
+            alert("Something went wrong!!!")
+          }
+        }catch(error){
+         console.log("Some error occured:",error)
+        }
+    }
+    
 
-    getExpenses()
+    useEffect(()=>{
+        getExpenses()
+    },[])
 
   return (
      <div className='bg-white rounded-2xl shadow-md p-6'>
          <h2 className='text-xl font-semibold text-gray-700 mb-4 '>Expense List</h2>
-         <table className='w-full text-sm text-left'>
+
+         <div className='overflow-x-auto'>
+            <table className='w-full text-sm text-left'>
             <thead>
                 <tr className='bg-gray-200 text-gray-600 uppercase text-xs font-semi-bold'>
                     <td className='px-4 py-3'>#</td>
@@ -32,7 +51,7 @@ const ExpenseList = () => {
             <tbody>
                 {
                     expenses.map((exp,idx)=>(
-                     <tr className='border-b border-gray-200 hover:bg-gray-50 transition-colors'>
+                     <tr key={idx} className='border-b border-gray-200 hover:bg-gray-50 transition-colors'>
                     <td className='px-4 py-3 text-gray-400'>{idx+1}</td>
                     <td className='px-4 py-3 text-gray-700 font-medium'>{exp.title}</td>
                     <td className='px-4 py-3'>
@@ -47,7 +66,7 @@ const ExpenseList = () => {
                         <button className='bg-yellow-400 hover:bg-yellow-500 text-white-
                         font-semibold rounded-lg px-3 py-1.5 transition-colors
                         duration-200 text-xs'>Edit</button>
-                        <button className='bg-red-400 hover:bg-red-500 text-white-
+                        <button onClick={()=>handleDelete(exp.id)} className='bg-red-400 hover:bg-red-500 text-white-
                         font-semibold rounded-lg px-3 py-1.5 transition-colors
                         duration-200 text-xs'>Delete</button>
                         </div>
@@ -59,6 +78,8 @@ const ExpenseList = () => {
                 
             </tbody>
          </table>
+         </div>
+         
          </div>
   )
 }
