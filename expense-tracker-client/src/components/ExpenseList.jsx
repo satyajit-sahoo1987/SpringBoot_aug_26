@@ -1,18 +1,19 @@
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+// import React, { useEffect, useState } from 'react'
 
-const ExpenseList = () => {
-    const [expenses,setExpenses]=useState([])
-    const getExpenses=async()=>{
-        try{
-        const response=await axios.get("http://localhost:8080/expenses")
-        setExpenses(response.data)
-        // console.log("data is",response.data);
-        }catch(err){
-            console.log("some error occured:-",err);   
-        }
-    }
+const ExpenseList = ({expenses}) => {
+    // const [expenses,setExpenses]=useState([])
+    // const getExpenses=async()=>{
+    //     try{
+    //     const response=await axios.get("http://localhost:8080/expenses")
+    //     setExpenses(response.data)
+    //     // console.log("data is",response.data);
+    //     }catch(err){
+    //         console.log("some error occured:-",err);   
+    //     }
+    // }
     const handleDelete=async (expenseId)=>{
+        if(confirm("Are you sure want to delete the Expense ?")){
         try{
           const response= await axios.delete('http://localhost:8080/expenses/'+expenseId)
           console.log("response ",response);
@@ -26,11 +27,11 @@ const ExpenseList = () => {
          console.log("Some error occured:",error)
         }
     }
-    
+}
 
-    useEffect(()=>{
-        getExpenses()
-    },[])
+    // useEffect(()=>{
+    //     getExpenses()
+    // },[])
 
   return (
      <div className='bg-white rounded-2xl shadow-md p-6'>
@@ -50,6 +51,10 @@ const ExpenseList = () => {
             </thead>
             <tbody>
                 {
+                    expenses.length===0?(
+                     <tr><td colSpan={6} className='text-center text-gray-400 py-2 text-xl
+                      font-medium italic'>No expenses Found</td></tr> 
+                    ):
                     expenses.map((exp,idx)=>(
                      <tr key={idx} className='border-b border-gray-200 hover:bg-gray-50 transition-colors'>
                     <td className='px-4 py-3 text-gray-400'>{idx+1}</td>
