@@ -1,7 +1,7 @@
 import axios from 'axios'
 // import React, { useEffect, useState } from 'react'
 
-const ExpenseList = ({expenses}) => {
+const ExpenseList = ({expenses,getExpenses}) => {
     // const [expenses,setExpenses]=useState([])
     // const getExpenses=async()=>{
     //     try{
