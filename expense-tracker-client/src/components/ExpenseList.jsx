@@ -1,7 +1,8 @@
 import axios from 'axios'
+import expenseService from '../services/expenseService'
 // import React, { useEffect, useState } from 'react'
 
-const ExpenseList = ({expenses,getExpenses}) => {
+const ExpenseList = ({expenses,getExpenses,setEditingExpense}) => {
     // const [expenses,setExpenses]=useState([])
     // const getExpenses=async()=>{
     //     try{
@@ -12,10 +13,14 @@ const ExpenseList = ({expenses,getExpenses}) => {
     //         console.log("some error occured:-",err);   
     //     }
     // }
+    function handleEdit(expense){
+     setEditingExpense(expense)
+    }
+    
     const handleDelete=async (expenseId)=>{
         if(confirm("Are you sure want to delete the Expense ?")){
         try{
-          const response= await axios.delete('http://localhost:8080/expenses/'+expenseId)
+          const response= await expenseService.deleteExpense(expenseId)
           console.log("response ",response);
           
           if(response.status===204){
@@ -68,7 +73,7 @@ const ExpenseList = ({expenses,getExpenses}) => {
                     <td className='px-4 py-3 font-semibold text-gray-700'>{exp.date}</td>
                     <td className='px-4 py-3'>
                         <div className='flex gap-2 justify-center'>
-                        <button className='bg-yellow-400 hover:bg-yellow-500 text-white-
+                        <button onClick={()=>handleEdit(exp)} className='bg-yellow-400 hover:bg-yellow-500 text-white-
                         font-semibold rounded-lg px-3 py-1.5 transition-colors
                         duration-200 text-xs'>Edit</button>
                         <button onClick={()=>handleDelete(exp.id)} className='bg-red-400 hover:bg-red-500 text-white-
