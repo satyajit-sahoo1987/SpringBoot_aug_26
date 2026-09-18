@@ -8,22 +8,22 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-@Entity 
+
 @Data 
-@AllArgsConstructor 
-@Builder 
 @NoArgsConstructor 
-public class  Product{
+@AllArgsConstructor 
+@Entity
+@Builder 
+public class Orders {
     @Id 
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String orderId;
+
     private int productId;
 
-    private String productName;
-
-    private String productBrand;
     private int quantity;
-    private double productPrice;
+
+    private  double totalPrice;
 
     
 }

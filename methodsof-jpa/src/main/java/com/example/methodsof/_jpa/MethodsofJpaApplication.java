@@ -23,6 +23,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor 
 public class MethodsofJpaApplication {
 	private final ProductRepository productRepository;
+	private final OrdersService orderService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(MethodsofJpaApplication.class, args);
@@ -83,7 +84,8 @@ public class MethodsofJpaApplication {
 		//    productRepository.findDistinctByProductName("product-9")
 		//    .forEach(System.out::println);
 
-		//    productRepository.findByProductNameAndProductBrand("Iphone 17 Pro Max","Apple")
+		//    productRepository.findByProductNameAndProductBrand("Iphone 19 Pro Max","Apple")
+		//    .ifPresent(p->System.out.println(p));
 		//    .forEach(System.out::println);
 		//    productRepository.findByProductNameOrProductBrand("Iphone 17 Pro Max","Apple")
 		//    .forEach(System.out::println);
@@ -100,7 +102,7 @@ public class MethodsofJpaApplication {
 		// List<Product> checkProduct=productRepository. findByProductPriceLessThanEqual(50000);
 		// System.out.println(checkProduct);
        //greaterthan
-		// List<Product> checkProduct=productRepository.findByProductPriceGreaterThan(50000);
+		// List<Product> checkProduct=productRepository.findAllByProductPriceGreaterThanEqual(50000,Sort.by(Direction.ASC , "productPrice"));
 		// System.out.println(checkProduct);
 
 		// List<Product> checkProduct=productRepository.findByProductPriceGreaterThan(50000);
@@ -134,7 +136,16 @@ public class MethodsofJpaApplication {
 		// System.out.println(checkProduct);
 		   
 
-         //if i have required-> a product by ite name of or
+		// productRepository.getProduct("product-2", "brand-2")
+		// .ifPresent(p->System.out.println(p));
+        
+
+		// int affectedRow=productRepository.updatePrice(10, 15000);
+		// System.out.println("No of affected rows"+affectedRow);
+
+
+		orderService.placeOrder(1,9);
+         //if i have required-> a product by its name of or
 		 //we use  1->Custom Query Methods
 		 //2->JPQL
 		 //3->normal sql query
