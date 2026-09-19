@@ -23,7 +23,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor 
 public class MethodsofJpaApplication {
 	private final ProductRepository productRepository;
-	private final OrdersService orderService;
+	private final OrdersService ordersService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(MethodsofJpaApplication.class, args);
@@ -144,12 +144,11 @@ public class MethodsofJpaApplication {
 		// System.out.println("No of affected rows"+affectedRow);
 
 
-		orderService.placeOrder(1,9);
+		ordersService.placeOrder(1,9);
          //if i have required-> a product by its name of or
 		 //we use  1->Custom Query Methods
 		 //2->JPQL
 		 //3->normal sql query
-
 		};
 	}
 private List<Product> getProducts(){

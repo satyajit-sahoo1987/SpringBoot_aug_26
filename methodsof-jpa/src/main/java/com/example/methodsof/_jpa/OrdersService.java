@@ -14,11 +14,11 @@ public class OrdersService {
    @Transactional 
     public void placeOrder(int productId,int quantity){
      var product=productRepository.findById(productId).orElseThrow();
-
+    
      product.setQuantity(product.getQuantity()-quantity);
      productRepository.save(product);
 
-     if(quantity==10){
+     if(quantity==9){
         throw new RuntimeException("Some error occured");
      }
 
