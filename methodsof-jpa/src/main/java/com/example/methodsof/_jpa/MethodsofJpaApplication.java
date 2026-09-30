@@ -75,8 +75,8 @@ public class MethodsofJpaApplication {
 			// updateProd.setProductName("Samsung Ulta 23");
 			// productRepository.save(updateProd);
 
-        //    Product optGalaxy= productRepository.findByProductName("product-5").orElseThrow();
-		//    System.out.println(optGalaxy);
+           Product optGalaxy= productRepository.findByProductName("product-5").orElseThrow();
+		   System.out.println(optGalaxy);
 
 		//    productRepository.findAllByProductPriceBetween(10000, 50000)
 		//    .forEach(System.out::println);

@@ -37,7 +37,7 @@ public class ExpenseController {
         
         // var sql="SELECT * FROM expenses WHERE id=?";
     //      Expense expense=jdbcTemplate.queryForObject(sql,new BeanPropertyRowMapper<Expense>(Expense.class),id);
-    //   return expense;
+    //   return expense;`
 
     // Optional<Expense> optExp=expenseRepository.findById(id);
 //    Expense expense=optExp.orElseThrow();
@@ -46,9 +46,6 @@ public class ExpenseController {
 //    return expense;
 
 return expenseService.getExpenseById(id);
-
-
-
     }
     // @RequestMapping(value="/expenses",method=RequestMethod.POST)
     @PostMapping(value="/expenses")
@@ -60,7 +57,7 @@ return expenseService.getExpenseById(id);
         // return expense;
         Expense savedExpense=expenseService.addExpense(expense);
         return savedExpense;
-    }
+    }   
     // @RequestMapping(value="/expenses/{id}",method=RequestMethod.DELETE)
     @DeleteMapping(value="/expenses/{id}")
     @ResponseStatus(value=HttpStatus.NO_CONTENT) 

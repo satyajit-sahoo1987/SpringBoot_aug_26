@@ -10,7 +10,7 @@ const ExpenseForm = ({getExpenses,editingExpense,setEditingExpense}) => {
    const[errors,setErrors]=useState({})
   useEffect(()=>{
   if(editingExpense){
-
+             
    setErrors({})
       setTitle(editingExpense.title)
       setCategory(editingExpense.category)
