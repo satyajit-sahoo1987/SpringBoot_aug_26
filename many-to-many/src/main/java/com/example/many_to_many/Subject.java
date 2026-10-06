@@ -17,7 +17,7 @@ public class Subject {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int subjectId;
     private String subjectName;
-    @ManyToMany(mappedBy = "subjects",cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @ManyToMany(mappedBy = "subjects",cascade = {CascadeType.MERGE, CascadeType.PERSIST},fetch=FetchType.EAGER)
     private List<Student> students;
 
 }

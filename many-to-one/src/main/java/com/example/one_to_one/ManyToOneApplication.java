@@ -28,16 +28,22 @@ public class ManyToOneApplication {
             Subject subject2=Subject.builder().subjectName("CSS").teacher(newTeacher).build();
             Subject subject3=Subject.builder().subjectName("JS").teacher(newTeacher).build();
             newTeacher.setSubjects(List.of(subject1,subject2,subject3));
-//            teacherRepository.save(newTeacher);
+        //    teacherRepository.save(newTeacher);
 
             //update
-            Teacher updateTeacher=teacherRepository.findById(9).orElseThrow();
-            updateTeacher.setTeacherName("Ram");
-            updateTeacher.getSubjects()
-                    .stream()
-                    .forEach(subject ->
-                        subject.setSubjectName(subject.getSubjectName() + 1)
-                    );
+            Teacher updateTeacher=teacherRepository.findById(3).orElseThrow();
+            updateTeacher.setTeacherName("Raghu");
+
+            // updateTeacher.getSubjects()
+            //         .stream()
+            //         .forEach(subject ->
+            //             subject.setSubjectName(subject.getSubjectName() + 1)
+            //         );
+
+            List<Subject> subjects=updateTeacher.getSubjects();
+            subjects.get(0).setSubjectName("dvance HTML");
+            subjects.get(1).setSubjectName("dvance CSS");
+            subjects.get(2).setSubjectName("dvance JS");
 
 //      ;              .stream()
 //                    .filter(sub-> sub.getSubjectId()==25)
@@ -46,14 +52,14 @@ public class ManyToOneApplication {
             teacherRepository.save(updateTeacher);
 
             //Delete
-//            teacherRepository.deleteAll();
+        //    teacherRepository.deleteAll();
 //            teacherRepository.deleteById(8);
 
             //Extract
-//            teacherRepository.findById(1).orElseThrow().getSubjects()
-//                    .forEach(sub->{
-//                        System.out.println(sub.getTeacher().getTeacherName()+"\t->\t"+sub.getSubjectName());
-//                    });
+           teacherRepository.findById(3).orElseThrow().getSubjects()
+                   .forEach(sub->{
+                       System.out.println(sub.getTeacher().getTeacherName()+"\t->\t"+sub.getSubjectName());
+                   });
         };
     }
     private void oneWayBinding(){

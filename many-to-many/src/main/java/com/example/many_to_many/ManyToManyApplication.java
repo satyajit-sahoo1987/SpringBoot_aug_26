@@ -21,7 +21,7 @@ private final SubjectRepository subjectRepository;
 	@Bean
 	public CommandLineRunner commandLineRunner() {
 		return args -> {
-			oneWayBinding();
+			// oneWayBinding();
 
 //			Save using inverse side
 			Student student1 = Student.builder()
@@ -46,15 +46,20 @@ student1.setSubjects(List.of(subject1,subject2,subject3,subject4));
 student2.setSubjects(List.of(subject1,subject2,subject3,subject4));
 student3.setSubjects(List.of(subject1,subject2,subject3,subject4));
 
-//			subjectRepository.saveAll(List.of(subject1, subject2, subject3));
+			// subjectRepository.saveAll(List.of(subject1, subject2, subject3));
             //=========UPDATE==============
-//			Subject subject=subjectRepository.findById(42).orElseThrow();
-//			subject.setSubjectName(".NET");
-//			subjectRepository.save(subject);
+			// Subject subject=subjectRepository.findById(	2).orElseThrow();
+			// subject.setSubjectName("Recat");
+			// subject.getStudents().get(0).setStudentName("RR");
+			// subjectRepository.save(subject);
 			//========Delete======
 //    subjectRepository.deleteAll();
-//	Subject subject=subjectRepository.findById(38).orElseThrow();
-//	subjectRepository.delete(subject);
+	Subject subject=subjectRepository.findById(4).orElseThrow();
+	subject.getStudents().forEach(student->{
+		student.getSubjects().remove(subject);
+		studentRepository.save(student);
+	});
+	subjectRepository.delete(subject);
 //====================extract===============
 //			subjectRepository.findAll().forEach(sub -> {
 //				sub.getStudents().forEach(std -> {
@@ -75,36 +80,38 @@ student3.setSubjects(List.of(subject1,subject2,subject3,subject4));
 
 		Student student1=Student.builder()
 				.studentName("Amit")
-				.studentEmail("amit@gmail.com").subjects(List.of(subject1,subject2,subject3))
+				.studentEmail("amit@gmail.com").subjects(List.of(subject1,subject2,subject3,subject4))
 				.build();
 		Student student2=Student.builder()
 				.studentName("Satya")
-				.studentEmail("satya@gmail.com").subjects(List.of(subject1,subject2,subject3))
+				.studentEmail("satya@gmail.com").subjects(List.of(subject1,subject2,subject3,subject4))
 				.build();
 		Student student3=Student.builder()
 				.studentName("Rahul")
-				.studentEmail("rahul@gmail.com").subjects(List.of(subject1,subject2,subject3))
+				.studentEmail("rahul@gmail.com").subjects(List.of(subject1,subject2,subject3,subject4))
 				.build();
-		studentRepository.saveAll(List.of(student1,student2,student3));
+		// studentRepository.saveAll(List.of(student1,student2,student3));
 
 		//update
-//Student updateStudent=studentRepository.findById(25).orElseThrow();
-//updateStudent.setStudentName("Akshya123");
-//updateStudent.setStudentEmail("akshya123@gmail.com");
-//Subject updateSubject=subjectRepository.findById(27).orElseThrow();
-//updateSubject.setSubjectName("cOMPUTER nETWORK");
-//subjectRepository.save(updateSubject);
+Student updateStudent=studentRepository.findById(1).orElseThrow();
+updateStudent.setStudentName("sima");
+updateStudent.setStudentEmail("sima@gmail.com");
+updateStudent.getSubjects().get(0).setSubjectName("Computer Network");
+Subject updateSubject=subjectRepository.findById(1).orElseThrow();
+updateSubject.setSubjectName("Computer Network");
+subjectRepository.save(updateSubject);			
 //
-//studentRepository.save(updateStudent);
+studentRepository.save(updateStudent);
 
 
 		//delete
 //studentRepository.deleteAll();
-		studentRepository.deleteById(49);
-//		Student delstudent=studentRepository.findById(25).orElseThrow();
+		// studentRepository.deleteById(1);
+		Student delstudent=studentRepository.findById(1).orElseThrow();
 //		Subject delsubject=subjectRepository.findById(27).orElseThrow();
-//		delstudent.getSubjects().remove(delsubject);
-//		studentRepository.save(delstudent);
+		delstudent.getSubjects().clear();
+		studentRepository.save(delstudent);
+		studentRepository.delete(delstudent);
 		//Extract
 		studentRepository.findAll().forEach(student->{
 			student.getSubjects().forEach(subject->{
